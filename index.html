@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQL Commands for Different Databases</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; padding: 20px; background-color: #f8f9fa; }
+        h1, h2 { color: #2c3e50; text-align: center; }
+        h3 { color: #1a5276; }
+        pre { background: #eef; padding: 10px; border-left: 4px solid #3498db; overflow-x: auto; border-radius: 5px; }
+        .container { max-width: 900px; margin: auto; padding: 20px; background: white; box-shadow: 0 0 10px rgba(0,0,0,0.1); border-radius: 8px; }
+        ul { list-style: none; padding: 0; display: flex; flex-wrap: wrap; justify-content: center; }
+        ul li { padding: 8px; }
+        ul li a { text-decoration: none; color: #3498db; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>SQL Tutorial</h1>
+        <ul>
+            <li><a href="#intro">SQL Intro</a></li>
+            <li><a href="#syntax">SQL Syntax</a></li>
+            <li><a href="#commands">SQL Commands</a></li>
+            <li><a href="#advanced">Advanced SQL Queries</a></li>
+            <li><a href="#db">SQL Database</a></li>
+        </ul>
+
+        <h2 id="intro">SQL Introduction</h2>
+        <p>SQL (Structured Query Language) is used to manage and manipulate databases.</p>
+        
+        <h2 id="syntax">SQL Syntax</h2>
+        <pre>
+SELECT column_name FROM table_name WHERE condition;
+        </pre>
+        
+        <h2 id="commands">Common SQL Commands</h2>
+        <h3>SQL Select</h3>
+        <pre>
+SELECT name, email FROM users;
+        </pre>
+        
+        <h3>SQL Joins</h3>
+        <pre>
+SELECT users.name, orders.amount 
+FROM users 
+JOIN orders ON users.id = orders.user_id;
+        </pre>
+        
+        <h3>SQL Unions</h3>
+        <pre>
+SELECT name FROM employees
+UNION
+SELECT name FROM customers;
+        </pre>
+        
+        <h3>SQL String Functions</h3>
+        <pre>
+SELECT UPPER(name), LOWER(email) FROM users;
+        </pre>
+        
+        <h3>SQL Case Statements</h3>
+        <pre>
+SELECT name, 
+CASE 
+    WHEN age < 18 THEN 'Minor'
+    ELSE 'Adult'
+END AS category
+FROM users;
+        </pre>
+        
+        <h3>SQL Subqueries</h3>
+        <pre>
+SELECT name FROM users WHERE id IN (SELECT user_id FROM orders);
+        </pre>
+        
+        <h3>SQL Window Functions</h3>
+        <pre>
+SELECT name, salary, RANK() OVER (ORDER BY salary DESC) AS rank
+FROM employees;
+        </pre>
+        
+        <h3>SQL CTEs</h3>
+        <pre>
+WITH EmployeeCTE AS (
+    SELECT id, name, salary FROM employees WHERE salary > 50000
+)
+SELECT * FROM EmployeeCTE;
+        </pre>
+        
+        <h3>SQL Temporary Tables</h3>
+        <pre>
+CREATE TEMPORARY TABLE temp_users AS SELECT * FROM users;
+        </pre>
+        
+        <h3>SQL Stored Procedures</h3>
+        <pre>
+CREATE PROCEDURE GetUsers()
+BEGIN
+    SELECT * FROM users;
+END;
+        </pre>
+        
+        <h3>SQL Triggers and Events</h3>
+        <pre>
+CREATE TRIGGER before_insert_users
+BEFORE INSERT ON users
+FOR EACH ROW
+SET NEW.created_at = NOW();
+        </pre>
+        
+        <h2 id="db">SQL Database Operations</h2>
+        <h3>Creating a Database</h3>
+        <pre>
+CREATE DATABASE mydatabase;
+        </pre>
+        
+        <h3>Creating a Table</h3>
+        <pre>
+CREATE TABLE employees (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(50)
+);
+        </pre>
+        
+        <h3>SQL Constraints</h3>
+        <pre>
+CREATE TABLE students (
+    id INT PRIMARY KEY,
+    name VARCHAR(50) NOT NULL,
+    email VARCHAR(100) UNIQUE
+);
+        </pre>
+    </div>
+</body>
+</html>
